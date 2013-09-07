@@ -8,6 +8,7 @@
 #include "../main.hpp"
 #include "AboutDialog.hpp"
 #include "../Node.hpp"
+#include "ModuleWidget.hpp"
 
 void on_file_exit(MainWindow *win) {
     win->hide();
@@ -61,6 +62,7 @@ MainWindow::MainWindow() {
     for (std::vector<const NodeDescriptor*>::const_iterator i = descriptors.begin(); i != descriptors.end(); ++i)
         submenu_add->add(*Gtk::manage(new Gtk::MenuItem((*i)->name())));
     menu_add->set_submenu(*submenu_add);
+    vbox->pack_start(*Gtk::manage(new ModuleWidget()), Gtk::PACK_EXPAND_WIDGET);
     add(*vbox);
     show_all_children();
 }
