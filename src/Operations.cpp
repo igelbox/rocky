@@ -3,10 +3,10 @@
 class OpSum : public Node {
 public:
 
-    class Descriptor : public NodeDescriptor {
+    class Descriptor : public Node::Descriptor {
     public:
 
-        Descriptor() : NodeDescriptor("op.sum", "+", "sum operation") {
+        Descriptor() : Node::Descriptor("op.sum", "+", "sum operation") {
 
         }
 
@@ -15,15 +15,15 @@ public:
         }
     };
 };
-auto sum = NodeDescriptor::registerDescriptor(new OpSum::Descriptor());
+auto sum = Node::Descriptor::registerDescriptor(new OpSum::Descriptor());
 
 class OpSub : public Node {
 public:
 
-    class Descriptor : public NodeDescriptor {
+    class Descriptor : public Node::Descriptor {
     public:
 
-        Descriptor() : NodeDescriptor("op.sub", "-", "sub operation") {
+        Descriptor() : Node::Descriptor("op.sub", "-", "sub operation") {
 
         }
 
@@ -32,4 +32,4 @@ public:
         }
     };
 };
-auto sub = NodeDescriptor::registerDescriptor(new OpSub::Descriptor());
+auto sub = Node::Descriptor::registerDescriptor(new OpSub::Descriptor());

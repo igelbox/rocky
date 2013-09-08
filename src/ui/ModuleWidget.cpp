@@ -8,6 +8,10 @@ bool ModuleWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     auto allocation = get_allocation();
     const int width = allocation.get_width();
     const int height = allocation.get_height();
+    cr->set_source_rgb(0, 0, 0);
+    cr->rectangle(0, 0, width, height);
+    cr->fill();
+    cr->set_source_rgb(1, 1, 1);
     cr->set_line_width(1);
     cr->move_to(0, _y);
     cr->line_to(width, _y);
