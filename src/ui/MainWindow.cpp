@@ -22,8 +22,8 @@ void on_help_about() {
 MainWindow::MainWindow() {
     set_title(Glib::ustring(APP_NAME) + " " + APP_VERSION_STRING);
     set_default_size(1024, 768);
-    Gtk::Box *vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
-    Glib::RefPtr<Gtk::ActionGroup> ag = Gtk::ActionGroup::create();
+    auto vbox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    auto ag = Gtk::ActionGroup::create();
     ag->add(Gtk::Action::create("file", "File"));
     ag->add(Gtk::Action::create("file.new", Gtk::Stock::NEW));
     ag->add(Gtk::Action::create("file.open", Gtk::Stock::OPEN));
@@ -34,7 +34,7 @@ MainWindow::MainWindow() {
     ag->add(Gtk::Action::create("edit.delete", Gtk::Stock::DELETE), Gtk::AccelKey("Delete"));
     ag->add(Gtk::Action::create("help", "Help"));
     ag->add(Gtk::Action::create("help.about", Gtk::Stock::ABOUT), sigc::ptr_fun(&on_help_about));
-    Glib::RefPtr<Gtk::UIManager> uim = Gtk::UIManager::create();
+    auto uim = Gtk::UIManager::create();
     uim->insert_action_group(ag);
     add_accel_group(uim->get_accel_group());
     uim->add_ui_from_string("<ui>"
@@ -56,11 +56,10 @@ MainWindow::MainWindow() {
             "  </menubar>"
             "</ui>");
     vbox->pack_start(*(uim->get_widget("/menu")), Gtk::PACK_SHRINK);
-    Gtk::MenuItem *menu_add = dynamic_cast<Gtk::MenuItem*> (uim->get_widget("/menu/edit/add"));
-    Gtk::Menu *submenu_add = Gtk::manage(new Gtk::Menu());
-    const std::vector<const NodeDescriptor*>& descriptors = NodeDescriptor::descriptors();
-    for (std::vector<const NodeDescriptor*>::const_iterator i = descriptors.begin(); i != descriptors.end(); ++i)
-        submenu_add->add(*Gtk::manage(new Gtk::MenuItem((*i)->name())));
+    auto menu_add = dynamic_cast<Gtk::MenuItem*> (uim->get_widget("/menu/edit/add"));
+    auto submenu_add = Gtk::manage(new Gtk::Menu());
+    for (auto nd : NodeDescriptor::descriptors())
+        submenu_add->add(*Gtk::manage(new Gtk::MenuItem(nd->name())));
     menu_add->set_submenu(*submenu_add);
     vbox->pack_start(*Gtk::manage(new ModuleWidget()), Gtk::PACK_EXPAND_WIDGET);
     add(*vbox);

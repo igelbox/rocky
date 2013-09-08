@@ -15,7 +15,7 @@ public:
         }
     };
 };
-const NodeDescriptor* sum = NodeDescriptor::registerDescriptor(new OpSum::Descriptor());
+auto sum = NodeDescriptor::registerDescriptor(new OpSum::Descriptor());
 
 class OpSub : public Node {
 public:
@@ -32,4 +32,4 @@ public:
         }
     };
 };
-const NodeDescriptor* sub = NodeDescriptor::registerDescriptor(new OpSub::Descriptor());
+auto sub = NodeDescriptor::registerDescriptor(new OpSub::Descriptor());

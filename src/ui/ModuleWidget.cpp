@@ -5,7 +5,7 @@ ModuleWidget::ModuleWidget() {
 }
 
 bool ModuleWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
-    Gtk::Allocation allocation = get_allocation();
+    auto allocation = get_allocation();
     const int width = allocation.get_width();
     const int height = allocation.get_height();
     cr->set_line_width(1);
@@ -28,7 +28,7 @@ bool ModuleWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
 bool ModuleWidget::on_motion_notify_event(GdkEventMotion* event) {
     _x = event->x;
     _y = event->y;
-    Glib::RefPtr<Gdk::Window> win = get_window();
+    auto win = get_window();
     if (win) {
         Gdk::Rectangle r(0, 0, get_allocation().get_width(), get_allocation().get_height());
         win->invalidate_rect(r, false);
