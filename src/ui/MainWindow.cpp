@@ -72,20 +72,13 @@ MainWindow::MainWindow() {
     auto dock = Gtk::manage(new Gdl::Dock());
     vbox->pack_start(*dock, Gtk::PACK_EXPAND_WIDGET);
 
-    auto pg = Gtk::manage(new Gdl::DockItem("tabs.graph", "Processing graph", Gdl::DOCK_ITEM_BEH_CANT_ICONIFY | Gdl::DOCK_ITEM_BEH_CANT_CLOSE | Gdl::DOCK_ITEM_BEH_NO_GRIP));
-    pg->add(*Gtk::manage(new ProcessingGraphWidget()));
+    auto pg = Gtk::manage(new Gdl::DockItem("dock.module", "Module", Gdl::DOCK_ITEM_BEH_CANT_ICONIFY | Gdl::DOCK_ITEM_BEH_CANT_CLOSE | Gdl::DOCK_ITEM_BEH_NO_GRIP));
+    pg->add(*Gtk::manage(new ModuleWidget()));
     dock->add_item(*pg, Gdl::DOCK_CENTER);
     
-    auto pw = Gtk::manage(new Gdl::DockItem("tabs.props", "Properties", Gdl::DOCK_ITEM_BEH_CANT_ICONIFY));
+    auto pw = Gtk::manage(new Gdl::DockItem("dock.props", "Properties", Gdl::DOCK_ITEM_BEH_CANT_ICONIFY));
     pw->add(*Gtk::manage(new PropertiesWidget()));
     dock->add_item(*pw, Gdl::DOCK_RIGHT);
 
-    for (int i = 0; i < 3; i++) {//test
-        Glib::ustring name = Glib::ustring::compose("tabs.module%1", i);
-        Glib::ustring long_name = Glib::ustring::compose("Module #%1", i);
-        auto x = Gtk::manage(new Gdl::DockItem(name, long_name, Gdl::DOCK_ITEM_BEH_CANT_ICONIFY));
-        x->add(*Gtk::manage(new ModuleWidget()));
-        dock->add_item(*x, Gdl::DOCK_CENTER);
-    }
     show_all_children();
 }
