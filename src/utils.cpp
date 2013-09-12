@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <typeinfo>
+#include <cxxabi.h>
 
 namespace rocky {
 
@@ -20,6 +21,11 @@ namespace rocky {
     }
 
     void Exception::dump(std::exception& e, std::string& out) throw () {
-        out = out + typeid (e).name() + ": " + e.what();
+        char demangled[1024];
+        size_t size = sizeof (demangled);
+        int status;
+        char *typname = abi::__cxa_demangle(typeid (e).name(), demangled, &size, &status);
+        demangled[sizeof (demangled) - 1] = 0;
+        out = out + typname + ": " + e.what();
     }
 }
