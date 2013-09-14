@@ -1,7 +1,10 @@
 #include "ModuleWidget.hpp"
 
+package_begin
+
 struct ModuleWidget::Impl {
     ModuleWidget *widget;
+    Module *module;
     gdouble x, y;
 
     Impl* self() {
@@ -40,8 +43,9 @@ struct ModuleWidget::Impl {
     }
 };
 
-ModuleWidget::ModuleWidget() {
+ModuleWidget::ModuleWidget(Module *module) {
     impl->widget = this;
+    impl->module = module;
     add_events(Gdk::POINTER_MOTION_MASK);
     signal_draw().connect(sigc::mem_fun(impl->self(), &ModuleWidget::Impl::on_draw));
     signal_motion_notify_event().connect(sigc::mem_fun(impl->self(), &ModuleWidget::Impl::on_motion_notify_event));
@@ -49,3 +53,5 @@ ModuleWidget::ModuleWidget() {
 
 ModuleWidget::~ModuleWidget() {
 }
+
+package_end
