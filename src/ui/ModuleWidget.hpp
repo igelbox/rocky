@@ -1,6 +1,6 @@
 #pragma once
 
-#include <gtkmm/drawingarea.h>
+#include <gtkmm/scrolledwindow.h>
 
 #include "../utils.hpp"
 #include "../Module.hpp"
@@ -9,9 +9,9 @@
 
 package_begin
 
-class ModuleWidget : public Gtk::DrawingArea {
+class ModuleWidget : public Gtk::ScrolledWindow {
 public:
-    explicit ModuleWidget(rocky::Module *module);
+    explicit ModuleWidget(rocky::Module &module);
     ~ModuleWidget() override;
 private:
     struct Impl;

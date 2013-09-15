@@ -28,6 +28,10 @@ static void on_help_about() {
     about.run();
 }
 
+static void on_nodeadd(rocky::Module *m, const rocky::Node::Descriptor *nd) {
+    m->append( nd->create() );
+}
+
 struct MainWindow::Impl {
 };
 
@@ -77,10 +81,12 @@ MainWindow::MainWindow() {
 
     struct placer {
 
-        static void place(Gtk::Menu &root, const char *path) {
+        static void place(rocky::Module *m, const rocky::Node::Descriptor *nd, Gtk::Menu &root, const char *path) {
             const char *sp = strchr(path, '/');
             if (!sp) {
-                root.add(*Gtk::manage(new Gtk::MenuItem(path)));
+                auto mi = Gtk::manage(new Gtk::MenuItem(path));
+                mi->signal_activate().connect(sigc::bind(&on_nodeadd, m, nd));
+                root.add(*mi);
             } else {
                 Glib::ustring category(path, sp - path);
                 Gtk::Menu *newRoot = NULL;
@@ -98,18 +104,18 @@ MainWindow::MainWindow() {
                     root.add(*mi);
                 }
                 sp++;
-                placer::place(*newRoot, sp);
+                placer::place(m, nd, *newRoot, sp);
             }
         }
     };
     for (auto nd : rocky::Node::Descriptor::descriptors())
-        placer::place(*submenu_add, nd->path());
+        placer::place(module, nd, *submenu_add, nd->path());
 
     auto dock = Gtk::manage(new Gdl::Dock());
     vbox->pack_start(*dock, Gtk::PACK_EXPAND_WIDGET);
 
     auto pg = Gtk::manage(new Gdl::DockItem("dock.module", "Module", Gdl::DOCK_ITEM_BEH_CANT_ICONIFY | Gdl::DOCK_ITEM_BEH_CANT_CLOSE | Gdl::DOCK_ITEM_BEH_NO_GRIP));
-    pg->add(*Gtk::manage(new ModuleWidget(module)));
+    pg->add(*Gtk::manage(new ModuleWidget(*module)));
     dock->add_item(*pg, Gdl::DOCK_CENTER);
 
     auto pw = Gtk::manage(new Gdl::DockItem("dock.props", "Properties", Gdl::DOCK_ITEM_BEH_CANT_ICONIFY));

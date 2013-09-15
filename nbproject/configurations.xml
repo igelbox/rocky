@@ -12,6 +12,9 @@
         <in>sio.cpp</in>
       </df>
       <df name="ui">
+        <df name="ng">
+          <in>Node.hpp</in>
+        </df>
         <in>AboutDialog.cpp</in>
         <in>MainWindow.cpp</in>
         <in>ModuleWidget.cpp</in>
@@ -109,6 +112,8 @@
       <item path="src/ui/PropertiesWidget.cpp" ex="false" tool="1" flavor2="8">
         <ccTool>
         </ccTool>
+      </item>
+      <item path="src/ui/ng/Node.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/utils.cpp" ex="false" tool="1" flavor2="8">
         <ccTool>
