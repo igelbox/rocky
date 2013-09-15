@@ -32,7 +32,6 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
-  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
     <Elem>src</Elem>
   </sourceRootList>
@@ -40,11 +39,12 @@
   <confs>
     <conf name="Default" type="0">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>CLang|CLang</compilerSet>
         <dependencyChecking>false</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <codeAssistance>
+        <buildAnalyzer>false</buildAnalyzer>
       </codeAssistance>
       <makefileType>
         <makeTool>
@@ -52,49 +52,16 @@
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>build/rocky</executablePath>
+          <ccTool>
+            <standard>8</standard>
+            <incDir>
+              <pElem>/usr/include/gdlmm-3.0</pElem>
+              <pElem>/usr/include/gtkmm-3.0</pElem>
+              <pElem>/usr/include/sigc++-2.0</pElem>
+            </incDir>
+          </ccTool>
         </makeTool>
       </makefileType>
-      <folder path="0">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/gdlmm-3.0</pElem>
-            <pElem>/usr/lib/gdlmm-3.0/include</pElem>
-            <pElem>/usr/include/libgdl-3.0</pElem>
-            <pElem>/usr/include/libxml2</pElem>
-            <pElem>/usr/include/gtkmm-3.0</pElem>
-            <pElem>/usr/lib/gtkmm-3.0/include</pElem>
-            <pElem>/usr/include/atkmm-1.6</pElem>
-            <pElem>/usr/include/gtk-3.0/unix-print</pElem>
-            <pElem>/usr/include/gdkmm-3.0</pElem>
-            <pElem>/usr/lib/gdkmm-3.0/include</pElem>
-            <pElem>/usr/include/giomm-2.4</pElem>
-            <pElem>/usr/lib/giomm-2.4/include</pElem>
-            <pElem>/usr/include/pangomm-1.4</pElem>
-            <pElem>/usr/lib/pangomm-1.4/include</pElem>
-            <pElem>/usr/include/glibmm-2.4</pElem>
-            <pElem>/usr/lib/glibmm-2.4/include</pElem>
-            <pElem>/usr/include/gtk-3.0</pElem>
-            <pElem>/usr/include/at-spi2-atk/2.0</pElem>
-            <pElem>/usr/include/gio-unix-2.0</pElem>
-            <pElem>/usr/include/cairo</pElem>
-            <pElem>/usr/include/pango-1.0</pElem>
-            <pElem>/usr/include/harfbuzz</pElem>
-            <pElem>/usr/include/atk-1.0</pElem>
-            <pElem>/usr/include/cairomm-1.0</pElem>
-            <pElem>/usr/lib/cairomm-1.0/include</pElem>
-            <pElem>/usr/include/pixman-1</pElem>
-            <pElem>/usr/include/freetype2</pElem>
-            <pElem>/usr/include/libdrm</pElem>
-            <pElem>/usr/include/libpng16</pElem>
-            <pElem>/usr/include/sigc++-2.0</pElem>
-            <pElem>/usr/lib/sigc++-2.0/include</pElem>
-            <pElem>/usr/include/gdk-pixbuf-2.0</pElem>
-            <pElem>/usr/include/glib-2.0</pElem>
-            <pElem>/usr/lib/glib-2.0/include</pElem>
-            <pElem>build</pElem>
-          </incDir>
-        </ccTool>
-      </folder>
       <item path="src/Module.cpp" ex="false" tool="1" flavor2="8">
         <ccTool>
         </ccTool>
