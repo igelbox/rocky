@@ -102,7 +102,7 @@ namespace rocky {
                 while (*port) {
                     std::string sport = *port;
                     const char *pn = sport.c_str();
-                    char *sc = strchr(pn, ':');
+                    char *sc = (char*)strchr(pn, ':');
                     if (sc == NULL)
                         throw Exception(pn);
                     *sc = 0;
