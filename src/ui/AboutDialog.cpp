@@ -1,6 +1,8 @@
+#include "../main.hpp"
+
 #include "AboutDialog.hpp"
 
-#include "../main.hpp"
+package_begin
 
 AboutDialog::AboutDialog() {
     set_program_name(APP_NAME);
@@ -11,3 +13,4 @@ AboutDialog::AboutDialog() {
 
     set_authors({"Vakhurin Sergey"});
 }
+package_end

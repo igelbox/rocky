@@ -1,8 +1,9 @@
-#include "PropertiesWidget.hpp"
-
 #include <gtkmm/treeview.h>
 #include <gtkmm/treemodelcolumn.h>
 #include <gtkmm/treestore.h>
+
+#include "PropertiesWidget.hpp"
+package_begin
 
 PropertiesWidget::PropertiesWidget() {
     set_size_request(128, 256);
@@ -30,3 +31,5 @@ PropertiesWidget::PropertiesWidget() {
     rc[*col_name] = "pc2";
     rc[*col_value] = "vc2";}
 }
+
+package_end

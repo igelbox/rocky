@@ -1,14 +1,14 @@
 #include "sio.hpp"
-namespace rocky {
-    namespace sio {
 
-        Port::~Port() {
-        };
+package_begin
 
-        Module::~Module() {
-        }
+Port::~Port() {
+};
 
-        Engine::~Engine() {
-        };
-    }
+Module::~Module() {
 }
+
+Engine::~Engine() {
+};
+
+package_end
